@@ -10,7 +10,7 @@ anzahlBots = 3
 spieler = []
 
 for anzahlSpieler in range(1, anzahlSpieler+1):
-    spieler.append(spieler({anzahlSpieler}, {}))
+    spieler.append(Spieler({anzahlSpieler}, {}))
 
 for anzahlBots in range(1, anzahlBots+1):
     spieler.append(Bot({anzahlBots}, {}))
@@ -35,3 +35,5 @@ for i in range(0, anzahlSpieler + anzahlBots):
     spieler[i].hand.extend(deck[0:5])
     del deck[0:5]
 
+ablage.extend(deck[0:1])
+del deck[0]

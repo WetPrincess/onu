@@ -5,10 +5,10 @@ class Card:
         self.color = color
         self.num = num
 
-class spieler:
+class Spieler:
     def __init__(self, ID, Hand):
         self.ID = None
         self.hand = []
 
-class Bot(spieler):
+class Bot(Spieler):
     pass
