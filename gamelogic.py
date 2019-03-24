@@ -1,6 +1,6 @@
 import random
 from classes import *
-from main import *
+#from main import *
 
 
 def arsch():

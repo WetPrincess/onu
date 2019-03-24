@@ -1,5 +1,5 @@
 from classes import *
-from gamelogic import *
+#from gamelogic import *
 import random
 
 # Spieler und Bots Erstellung
