@@ -1,12 +1,24 @@
 from classes import *
+from gamelogic import *
 import random
+
+# Spieler und Bots Erstellung
+# anzahlSpieler = int(input("Wie viele Spieler?"))
+# anzahlBots = int(input("Wie viele Bots?"))
+anzahlSpieler = 3
+anzahlBots = 3
+spieler = []
+
+for anzahlSpieler in range(1, anzahlSpieler+1):
+    spieler.append(spieler({anzahlSpieler}, {}))
+
+for anzahlBots in range(1, anzahlBots+1):
+    spieler.append(Bot({anzahlBots}, {}))
 
 
 # Deckcreation und Shuffle
 deck = []
 ablage = []
-spieler01 = []
-spieler02 = []
 
 for i in range(1,11):
     deck.append(Card({"R"}, {i}))
@@ -14,21 +26,12 @@ for i in range(1,11):
     deck.append(Card({"B"}, {i}))
     deck.append(Card({"Y"}, {i}))
 
-#random.shuffle(deck)
+# random.shuffle(deck)
 
-# Test ob alle Objekte angekommen sind
-# for i in range(0,40):
-#     print(deck[i].color, deck[i].num)
-
-print("---")
-Spieler.hand.extend(deck[0:5])
-del deck[0:5]
+# Spieler bekommen karten
 
 
-spieler02.extend(deck[0:5])
-del deck[0:5]
-
-
-ablage.extend(deck[0:1])
-del deck[0]
+for i in range(0, anzahlSpieler + anzahlBots):
+    spieler[i].hand.extend(deck[0:5])
+    del deck[0:5]
 

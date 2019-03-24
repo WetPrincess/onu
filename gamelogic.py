@@ -12,8 +12,8 @@ def arsch():
 arsch()
 
 def handzeigen():
-    for i in range(0,len(Spieler.hand)):
-        print(i+1 , Spieler.hand[i].color , Spieler.hand[i].num)
+    for i in range(0, len(spieler.hand)):
+        print(i + 1, spieler.hand[i].color, spieler.hand[i].num)
 
     print("Oberste Karte auf dem Ablagestapel: ")
     print(ablage[-1].color , ablage[-1].num)
@@ -25,9 +25,9 @@ def karteablegen():
     while True:
         ablegen = int(input("Lege eine Karte ab:"))
         ablegen -= 1
-        if Spieler.hand[ablegen].color == ablage[-1].color or Spieler.hand[ablegen].num == ablage[-1].num:
-            ablage.extend(Spieler.hand[ablegen:ablegen + 1])
-            del Spieler.hand[ablegen]
+        if spieler.hand[ablegen].color == ablage[-1].color or spieler.hand[ablegen].num == ablage[-1].num:
+            ablage.extend(spieler.hand[ablegen:ablegen + 1])
+            del spieler.hand[ablegen]
             print(ablage[-1].color, ablage[-1].num)
             break
         else:
