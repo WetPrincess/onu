@@ -12,7 +12,7 @@ def reihe():
         k += 1
     else:
         k = 0
-    print("spieler", k + 1, "ist dran!")
+    print("Spieler", k + 1, "ist dran!")
 
 
 
@@ -35,7 +35,6 @@ def kannablegen():
     ablegen = False
     for card in range(0, len(spieler[k].hand)):
         if spieler[k].hand[card].color == ablage[-1].color or spieler[k].hand[card].num == ablage[-1].num:
-            ablegen = True
             return True
 
 
@@ -44,6 +43,12 @@ def kannablegen():
         print("Spieler", k + 1, "kann keine Karte ablegen. Er muss eine ziehen!")
         spieler[k].hand.extend(deck[0:1])
         del deck[0]
+        input("Weiter!")
+        print()
+        print("Spieler", k+1 , "neue Hand!")
+        input("Weiter!")
+        print()
+        input("Weiter!")
         handzeigen()
         return False
 
@@ -69,7 +74,7 @@ def karteablegen():
         else:
             print("Diese Karte kannst du nicht ablegen!")
 
-#Die Sigebedingung wird überprüft, dann der Zug weitergegeben
+#Die Siegbedingung wird überprüft, dann der Zug weitergegeben
 
 def siegbedingung():
     global k
@@ -85,7 +90,7 @@ def siegbedingung():
 def deckvoll():
     if len(deck) == 0:
         deck.extend(ablage[1:-1])
-        del ablage[1:(-1)]
+        del ablage[1:-1]
         print("Der Ablagestapel wurde ins Deck gemischt!")
         print()
 
@@ -100,3 +105,6 @@ while True:
         karteablegen()
     siegbedingung()
     deckvoll()
+    print()
+    print("######################################################################################################")
+    print()
