@@ -5,9 +5,10 @@ import random
 # Spieler und Bots Erstellung
 # anzahlSpieler = int(input("Wie viele Spieler?"))
 # anzahlBots = int(input("Wie viele Bots?"))
-anzahlSpieler = 3
-anzahlBots = 3
+anzahlSpieler = 2
+anzahlBots = 0
 spieler = []
+k = -1
 
 for anzahlSpieler in range(1, anzahlSpieler+1):
     spieler.append(Spieler({anzahlSpieler}, {}))
@@ -26,7 +27,8 @@ for i in range(1,11):
     deck.append(Card({"B"}, {i}))
     deck.append(Card({"Y"}, {i}))
 
-# random.shuffle(deck)
+
+random.shuffle(deck)
 
 # Spieler bekommen karten
 
