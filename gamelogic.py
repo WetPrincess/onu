@@ -17,6 +17,7 @@ def reihe(spieler, k):
 
 def handzeigen(spieler, ablage, k):
     #os.system('clear')
+
     print("")
     for i in range(0, len(spieler[k].hand)):
         print(i + 1, spieler[k].hand[i].color, spieler[k].hand[i].num)
@@ -57,7 +58,7 @@ def karteablegen(spieler, ablage, k):
         while True:
             ablegen = int(input("Lege eine Karte ab:"))
             ablegen -= 1
-            if ablegen<len(spieler[k].hand):
+            if ablegen < len(spieler[k].hand):
                 break
 
         if spieler[k].hand[ablegen].color == ablage[-1].color or spieler[k].hand[ablegen].num == ablage[-1].num:

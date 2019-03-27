@@ -5,6 +5,7 @@ import random
 # Spieler und Bots Erstellung
 # anzahlSpieler = int(input("Wie viele Spieler?"))
 # anzahlBots = int(input("Wie viele Bots?"))
+
 anzahlSpieler = 1
 anzahlBots = 1
 spieler = []
@@ -39,7 +40,6 @@ for i in range(0, anzahlSpieler + anzahlBots):
 
 ablage.extend(deck[0:1])
 del deck[0]
-
 
 #Spielablauf
 while True:
