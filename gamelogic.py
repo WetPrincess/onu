@@ -1,7 +1,4 @@
-from init import *
-
-
-
+from main import *
 
 #Wer ist gerade am Zug
 
@@ -94,3 +91,11 @@ def deckvoll():
         del ablage[1:-1]
         print("Der Ablagestapel wurde ins Deck gemischt!")
         print()
+
+while True:
+        k = reihe(k)
+        handzeigen()
+        if kannablegen():
+            karteablegen()
+        siegbedingung(k)
+        deckvoll()
