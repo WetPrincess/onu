@@ -5,8 +5,8 @@ import random
 # Spieler und Bots Erstellung
 # anzahlSpieler = int(input("Wie viele Spieler?"))
 # anzahlBots = int(input("Wie viele Bots?"))
-anzahlSpieler = 7
-anzahlBots = 0
+anzahlSpieler = 1
+anzahlBots = 1
 spieler = []
 k = -1
 
@@ -44,8 +44,11 @@ del deck[0]
 #Spielablauf
 while True:
         k = reihe(spieler, k)
-        handzeigen(spieler, ablage, k)
-        if kannablegen(spieler, ablage, deck, k):
-            karteablegen(spieler, ablage, k)
+        if isinstance(spieler[k], Bot) == False:
+            handzeigen(spieler, ablage, k)
+            if kannablegen(spieler, ablage, deck, k):
+                karteablegen(spieler, ablage, k)
+        else:
+            print("Ich bin Bot!")
         siegbedingung(spieler, k)
         deckvoll(deck, ablage)

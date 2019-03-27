@@ -80,6 +80,7 @@ def siegbedingung(spieler, k):
         quit()
     else:
         print("Nächster Zug!")
+        print("##############################################################################################")
         print()
 
 
