@@ -17,7 +17,6 @@ def reihe(k):
 #zeigt die hand des aktuellen spielers und ablage
 
 def handzeigen():
-    #os.system('clear')
     print("")
     for i in range(0, len(spieler[k].hand)):
         print(i + 1, spieler[k].hand[i].color, spieler[k].hand[i].num)
@@ -58,7 +57,7 @@ def karteablegen():
         while True:
             ablegen = int(input("Lege eine Karte ab:"))
             ablegen -= 1
-            if ablegen<len(spieler[k].hand):
+            if ablegen < len(spieler[k].hand):
                 break
 
         if spieler[k].hand[ablegen].color == ablage[-1].color or spieler[k].hand[ablegen].num == ablage[-1].num:
@@ -94,8 +93,9 @@ def deckvoll():
 
 while True:
         k = reihe(k)
-        handzeigen()
-        if kannablegen():
-            karteablegen()
+        if isinstance(spieler[k], Bot) == False:
+            handzeigen()
+            if kannablegen():
+                karteablegen()
         siegbedingung(k)
         deckvoll()

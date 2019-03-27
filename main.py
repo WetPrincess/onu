@@ -6,7 +6,7 @@ import random
 # anzahlSpieler = int(input("Wie viele Spieler?"))
 # anzahlBots = int(input("Wie viele Bots?"))
 anzahlSpieler = 2
-anzahlBots = 0
+anzahlBots = 2
 spieler = []
 k = -1
 
