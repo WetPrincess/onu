@@ -11,4 +11,7 @@ class Spieler:
         self.hand = []
 
 class Bot(Spieler):
-    pass
+    def __init__(self, ID, Hand, IsBot):
+        super().__init__(ID, Hand)
+        self.isBot = True
+

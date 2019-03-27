@@ -13,7 +13,7 @@ for anzahlSpieler in range(1, anzahlSpieler+1):
     spieler.append(Spieler({anzahlSpieler}, {}))
 
 for anzahlBots in range(1, anzahlBots+1):
-    spieler.append(Bot({anzahlBots}, {}))
+    spieler.append(Bot({anzahlBots}, {}, {}))
 
 
 # Deckcreation und Shuffle
