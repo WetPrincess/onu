@@ -1,8 +1,7 @@
-from main import *
 
 #Wer ist gerade am Zug
 
-def reihe(k):
+def reihe(spieler, k):
 
     if k < len(spieler)-1:
         k += 1
@@ -16,7 +15,9 @@ def reihe(k):
 
 #zeigt die hand des aktuellen spielers und ablage
 
-def handzeigen():
+def handzeigen(spieler, ablage, k):
+    #os.system('clear')
+
     print("")
     for i in range(0, len(spieler[k].hand)):
         print(i + 1, spieler[k].hand[i].color, spieler[k].hand[i].num)
@@ -28,7 +29,7 @@ def handzeigen():
 
 #Überprüfen ob eine Karte abgelegt werden kann
 
-def kannablegen():
+def kannablegen(spieler, ablage, deck, k):
     ablegen = False
     for card in range(0, len(spieler[k].hand)):
         if spieler[k].hand[card].color == ablage[-1].color or spieler[k].hand[card].num == ablage[-1].num:
@@ -46,12 +47,12 @@ def kannablegen():
         input("Weiter!")
         print()
         input("Weiter!")
-        handzeigen()
+        handzeigen(spieler, ablage, k)
         return False
 
 #Funktion um eine Karte aus der Hand auf die Ablage zu legen
 
-def karteablegen():
+def karteablegen(spieler, ablage, k):
     while True:
 
         while True:
@@ -73,29 +74,21 @@ def karteablegen():
 
 #Die Siegbedingung wird überprüft, dann der Zug weitergegeben
 
-def siegbedingung(k):
+def siegbedingung(spieler, k):
 
     if len(spieler[k].hand) == 0:
         print("Spieler", k + 1, "hat gewonnen!")
         quit()
     else:
         print("Nächster Zug!")
+        print("##############################################################################################")
         print()
 
 
 #Sind noch Karten auf dem Deck?
-def deckvoll():
+def deckvoll(deck, ablage):
     if len(deck) == 0:
         deck.extend(ablage[1:-1])
         del ablage[1:-1]
         print("Der Ablagestapel wurde ins Deck gemischt!")
         print()
-
-while True:
-        k = reihe(k)
-        if isinstance(spieler[k], Bot) == False:
-            handzeigen()
-            if kannablegen():
-                karteablegen()
-        siegbedingung(k)
-        deckvoll()
