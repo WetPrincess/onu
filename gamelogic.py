@@ -1,18 +1,19 @@
-import random
-import os
-from classes import *
-from main import *
+from init import *
+
+
+
 
 #Wer ist gerade am Zug
 
-def reihe():
-    global k
+def reihe(k):
 
     if k < len(spieler)-1:
         k += 1
     else:
         k = 0
     print("Spieler", k + 1, "ist dran!")
+
+    return k
 
 
 
@@ -76,8 +77,8 @@ def karteablegen():
 
 #Die Siegbedingung wird überprüft, dann der Zug weitergegeben
 
-def siegbedingung():
-    global k
+def siegbedingung(k):
+
     if len(spieler[k].hand) == 0:
         print("Spieler", k + 1, "hat gewonnen!")
         quit()
@@ -93,18 +94,3 @@ def deckvoll():
         del ablage[1:-1]
         print("Der Ablagestapel wurde ins Deck gemischt!")
         print()
-
-
-#Spielablauf
-
-while True:
-
-    reihe()
-    handzeigen()
-    if kannablegen():
-        karteablegen()
-    siegbedingung()
-    deckvoll()
-    print()
-    print("######################################################################################################")
-    print()
