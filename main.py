@@ -1,11 +1,11 @@
 from classes import *
-#from gamelogic import *
+from gamelogic import *
 import random
 
 # Spieler und Bots Erstellung
 # anzahlSpieler = int(input("Wie viele Spieler?"))
 # anzahlBots = int(input("Wie viele Bots?"))
-anzahlSpieler = 2
+anzahlSpieler = 7
 anzahlBots = 0
 spieler = []
 k = -1
@@ -39,3 +39,13 @@ for i in range(0, anzahlSpieler + anzahlBots):
 
 ablage.extend(deck[0:1])
 del deck[0]
+
+
+#Spielablauf
+while True:
+        k = reihe(spieler, k)
+        handzeigen(spieler, ablage, k)
+        if kannablegen(spieler, ablage, deck, k):
+            karteablegen(spieler, ablage, k)
+        siegbedingung(spieler, k)
+        deckvoll(deck, ablage)
