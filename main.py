@@ -32,8 +32,6 @@ for i in range(1,11):
 random.shuffle(deck)
 
 # Spieler bekommen karten
-
-
 for i in range(0, anzahlSpieler + anzahlBots):
     spieler[i].hand.extend(deck[0:5])
     del deck[0:5]
