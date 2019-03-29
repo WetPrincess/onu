@@ -1,9 +1,9 @@
 import time
 
-# Ist die Eingabe eine Zahl?
-def ist_zahl(s):
+# Ist die Eingabe ein Integer?
+def ist_zahl(zahl):
     try:
-        int(s)
+        int(zahl)
         return True
     except ValueError:
         return False
