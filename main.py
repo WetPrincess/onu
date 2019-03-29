@@ -9,7 +9,7 @@ import random
 anzahlSpieler = 1
 anzahlBots = 1
 spieler = []
-k = -1
+id = 0
 
 for anzahlSpieler in range(1, anzahlSpieler+1):
     spieler.append(Spieler({anzahlSpieler}, {}))
@@ -41,12 +41,13 @@ del deck[0]
 
 #Spielablauf
 while True:
-        k = reihe(spieler, k)
-        if isinstance(spieler[k], Bot) == False:
-            handzeigen(spieler, ablage, k)
-            if kannablegen(spieler, ablage, deck, k):
-                karteablegen(spieler, ablage, k)
+
+        if isinstance(spieler[id], Bot) == False:
+            handzeigen(spieler, id, ablage)
+            if kannablegen(spieler, id, ablage, deck):
+                karteablegen(spieler, id, ablage)
         else:
             print("Ich bin Bot!")
-        siegbedingung(spieler, k)
+        siegbedingung(spieler, id)
         deckvoll(deck, ablage)
+        id = am_zug(spieler, id)
