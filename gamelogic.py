@@ -1,94 +1,113 @@
+import time
 
-#Wer ist gerade am Zug
+# Ist die Eingabe ein Integer?
+def ist_zahl(karten_inp):
+    try:
+        int(karten_inp)
+        return True
+    except ValueError:
+        return False
 
-def reihe(spieler, k):
 
-    if k < len(spieler)-1:
-        k += 1
+# Vergleich mit der Spielerhand
+def handgroesse(karten_inp, spieler, id):
+    if karten_inp <= len(spieler[id].hand) and karten_inp > 0:
+        return True
     else:
-        k = 0
+        return False
+
+
+# Spiellogik
+
+# Zeigt aktuellen Spieler, Hand und Ablage
+def handzeigen(spieler, id, ablage):
     print("Spieler", k + 1, "ist dran!")
-
-    return k
-
-
-
-#zeigt die hand des aktuellen spielers und ablage
-
-def handzeigen(spieler, ablage, k):
-    #os.system('clear')
-
     print("")
-    for i in range(0, len(spieler[k].hand)):
-        print(i + 1, spieler[k].hand[i].color, spieler[k].hand[i].num)
+    for karte in range(0, len(spieler[id].hand)):
+        print(karte + 1, spieler[id].hand[karte].color, spieler[id].hand[karte].num)
 
     print("")
     print("oberste karte auf dem ablagestapel: ")
     print(ablage[-1].color , ablage[-1].num)
     print("")
+    
+# Überprüfen ob eine Karte abgelegt werden kann
+def kannablegen(spieler, id, ablage, deck):
 
-#Überprüfen ob eine Karte abgelegt werden kann
+    1
+    0
+    0
 
-def kannablegen(spieler, ablage, deck, k):
-    ablegen = False
-    for card in range(0, len(spieler[k].hand)):
-        if spieler[k].hand[card].color == ablage[-1].color or spieler[k].hand[card].num == ablage[-1].num:
+WetPrincess/onu
+
+    for card in range(0, len(spieler[id].hand)):
+        if spieler[id].hand[card].color == ablage[-1].color or spieler[id].hand[card].num == ablage[-1].num:
             return True
 
 
+    # Keine Karte kann abgelegt werden
+    print("Spieler", id + 1, "kann keine Karte ablegen. Er muss eine ziehen!")
+    spieler[id].hand.extend(deck[0:1])
+    del deck[0]
+    time.sleep(2)
+    print("Spieler", id + 1, "neue Hand!")
+    handzeigen(spieler, id, ablage)
+    time.sleep(2)
+    return False
 
-    if ablegen == False:
-        print("Spieler", k + 1, "kann keine Karte ablegen. Er muss eine ziehen!")
-        spieler[k].hand.extend(deck[0:1])
-        del deck[0]
-        input("Weiter!")
-        print()
-        print("Spieler", k+1 , "neue Hand!")
-        input("Weiter!")
-        print()
-        input("Weiter!")
-        handzeigen(spieler, ablage, k)
-        return False
-
-#Funktion um eine Karte aus der Hand auf die Ablage zu legen
-
-def karteablegen(spieler, ablage, k):
+# Spielerinput, dann wird die entsprechende Karte abgelegt
+def karteablegen(spieler, id, ablage):
     while True:
 
         while True:
-            ablegen = int(input("Lege eine Karte ab:"))
-            ablegen -= 1
-            if ablegen < len(spieler[k].hand):
+            karte_inp = input("Lege eine Karte ab:")
+            if ist_zahl(karte_inp) and handgroesse(int(karte_inp), spieler, id):
+                karte_inp = int(karte_inp) - 1
                 break
 
-        if spieler[k].hand[ablegen].color == ablage[-1].color or spieler[k].hand[ablegen].num == ablage[-1].num:
+        if spieler[id].hand[karte_inp].color == ablage[-1].color or spieler[id].hand[karte_inp].num == ablage[-1].num:
 
-            ablage.extend(spieler[k].hand[ablegen:ablegen + 1])
-            del spieler[k].hand[ablegen]
-
+            ablage.extend(spieler[id].hand[karte_inp:karte_inp + 1])
+            del spieler[id].hand[karte_inp]
             print(ablage[-1].color, ablage[-1].num)
+            time.sleep(2)
+
             break
 
         else:
             print("Diese Karte kannst du nicht ablegen!")
 
-#Die Siegbedingung wird überprüft, dann der Zug weitergegeben
+# Die Siegbedingung wird überprüft, dann der Zug weitergegeben
+def siegbedingung(spieler, id):
 
-def siegbedingung(spieler, k):
+    if len(spieler[id].hand) == 0:
+        print("Spieler", id + 1, "hat gewonnen!")
 
-    if len(spieler[k].hand) == 0:
-        print("Spieler", k + 1, "hat gewonnen!")
         quit()
     else:
         print("Nächster Zug!")
         print("##############################################################################################")
         print()
+        time.sleep(2)
 
 
-#Sind noch Karten auf dem Deck?
+
+# Sind noch Karten auf dem Deck?
+
 def deckvoll(deck, ablage):
     if len(deck) == 0:
         deck.extend(ablage[1:-1])
         del ablage[1:-1]
         print("Der Ablagestapel wurde ins Deck gemischt!")
         print()
+        time.sleep(2)
+
+# Zug wird weitergegeben
+def am_zug(spieler, id):
+
+    if id < len(spieler)-1:
+        id += 1
+    else:
+        id = 0
+
+    return id
