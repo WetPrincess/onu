@@ -1,3 +1,4 @@
+from random import *
 import time
 
 # Ist die Eingabe ein Integer?
@@ -7,7 +8,6 @@ def ist_zahl(karten_inp):
         return True
     except ValueError:
         return False
-
 
 # Vergleich mit der Spielerhand
 def handgroesse(karten_inp, spieler, id):
@@ -28,12 +28,11 @@ def handzeigen(spieler, id, ablage):
 
     print("")
     print("oberste karte auf dem ablagestapel: ")
-    print(ablage[-1].color , ablage[-1].num)
+    print(ablage[-1].color, ablage[-1].num)
     print("")
     
 # Überprüfen ob eine Karte abgelegt werden kann
 def kannablegen(spieler, id, ablage, deck):
-
     for card in range(0, len(spieler[id].hand)):
         if spieler[id].hand[card].color == ablage[-1].color or spieler[id].hand[card].num == ablage[-1].num:
             return True
@@ -92,9 +91,37 @@ def deckvoll(deck, ablage):
     if len(deck) == 0:
         deck.extend(ablage[1:-1])
         del ablage[1:-1]
+        random.shuffle(deck)
         print("Der Ablagestapel wurde ins Deck gemischt!")
         print()
-        time.sleep(2)
+
+# Bot
+
+def bot_kannablegen(spieler, ablage, deck, id):
+    ablegen = False
+    for card in range(0, len(spieler[id].hand)):
+        if spieler[id].hand[card].color == ablage[-1].color or spieler[id].hand[card].num == ablage[-1].num:
+            return True
+
+    if ablegen == False:
+        print("Spieler", id + 1, "kann keine Karte ablegen. Er muss eine ziehen!")
+        spieler[id].hand.extend(deck[0:1])
+        del deck[0]
+        input("Weiter!")
+        print()
+        # print("Spieler", k+1 , "neue Hand!")
+        # input("Weiter!")
+        return False
+
+
+def bot_karteablegen(spieler, ablage, id):
+    for ablegen in range(0, len(spieler[id].hand)):
+        if spieler[id].hand[ablegen].color == ablage[-1].color or spieler[id].hand[ablegen].num == ablage[-1].num:
+            ablage.extend(spieler[id].hand[ablegen:ablegen + 1])
+            del spieler[id].hand[ablegen]
+            print("Spieler", id+1 , "hat noch ", len(spieler[id].hand), "karten auf der Hand")
+            break
+
 
 # Zug wird weitergegeben
 def am_zug(spieler, id):
