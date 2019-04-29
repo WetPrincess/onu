@@ -5,7 +5,6 @@ class Card:
         self.color = color
         self.num = num
 
-
 class Spieler:
     def __init__(self, ID, Hand):
         self.ID = None
@@ -16,4 +15,4 @@ class Bot(Spieler):
         super().__init__(ID, Hand)
         self.isBot = True
 
-
+        
