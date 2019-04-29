@@ -11,6 +11,7 @@ anzahlBots = 1
 spieler = []
 id = 0
 
+
 for anzahlSpieler in range(1, anzahlSpieler+1):
     spieler.append(Spieler({anzahlSpieler}, {}))
 

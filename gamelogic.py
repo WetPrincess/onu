@@ -30,9 +30,16 @@ def handzeigen(spieler, id, ablage):
     print("oberste karte auf dem ablagestapel: ")
     print(ablage[-1].color , ablage[-1].num)
     print("")
-
+    
 # Überprüfen ob eine Karte abgelegt werden kann
 def kannablegen(spieler, id, ablage, deck):
+
+    1
+    0
+    0
+
+WetPrincess/onu
+
     for card in range(0, len(spieler[id].hand)):
         if spieler[id].hand[card].color == ablage[-1].color or spieler[id].hand[card].num == ablage[-1].num:
             return True
@@ -64,6 +71,7 @@ def karteablegen(spieler, id, ablage):
             del spieler[id].hand[karte_inp]
             print(ablage[-1].color, ablage[-1].num)
             time.sleep(2)
+
             break
 
         else:
@@ -74,6 +82,7 @@ def siegbedingung(spieler, id):
 
     if len(spieler[id].hand) == 0:
         print("Spieler", id + 1, "hat gewonnen!")
+
         quit()
     else:
         print("Nächster Zug!")
@@ -84,6 +93,7 @@ def siegbedingung(spieler, id):
 
 
 # Sind noch Karten auf dem Deck?
+
 def deckvoll(deck, ablage):
     if len(deck) == 0:
         deck.extend(ablage[1:-1])
