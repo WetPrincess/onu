@@ -41,7 +41,7 @@ for i in range(0, anzahlSpieler + anzahlBots):
 ablage.extend(deck[0:1])
 del deck[0]
 
-#Spielablauf
+# Spielablauf
 while True:
         k = reihe(spieler, k)
         if isinstance(spieler[k], Bot) == False:
@@ -49,6 +49,9 @@ while True:
             if kannablegen(spieler, ablage, deck, k):
                 karteablegen(spieler, ablage, k)
         else:
-            print("Ich bin Bot!")
+            print("Macht seinen Zug ...")
+            if bot_kannablegen(spieler, ablage, deck, k):
+                bot_karteablegen(spieler, ablage, k)
+
         siegbedingung(spieler, k)
         deckvoll(deck, ablage)
