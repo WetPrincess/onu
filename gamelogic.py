@@ -21,7 +21,7 @@ def handgroesse(karten_inp, spieler, id):
 
 # Zeigt aktuellen Spieler, Hand und Ablage
 def handzeigen(spieler, id, ablage):
-    print("Spieler", k + 1, "ist dran!")
+    print("Spieler", id + 1, "ist dran!")
     print("")
     for karte in range(0, len(spieler[id].hand)):
         print(karte + 1, spieler[id].hand[karte].color, spieler[id].hand[karte].num)
@@ -33,12 +33,6 @@ def handzeigen(spieler, id, ablage):
     
 # Überprüfen ob eine Karte abgelegt werden kann
 def kannablegen(spieler, id, ablage, deck):
-
-    1
-    0
-    0
-
-WetPrincess/onu
 
     for card in range(0, len(spieler[id].hand)):
         if spieler[id].hand[card].color == ablage[-1].color or spieler[id].hand[card].num == ablage[-1].num:
