@@ -8,12 +8,26 @@ class Card:
 
 
 class Spieler:
-    def __init__(self, ID, Hand):
-        self.ID = None
+    def __init__(self, ID):
+        self.ID = ID
         self.hand = []
+
+# Ziehfunktion
+    def zieh_karte(self, anzahl, spieler, id, deck):
+        for menge in range(anzahl):
+            spieler[id].hand.extend(deck[0:1])
+            del deck[0]
+        print(spieler[id].ID, "zieht", anzahl, "mal!")
+
+# Legefunktion
+    def ablegen_karte(self, spieler, id, ablage, karte_inp):
+        ablage.extend(spieler[id].hand[karte_inp:karte_inp + 1])
+        del spieler[id].hand[karte_inp]
+        print (spieler[id].ID, "spielt:")
+        print(ablage[-1].color, ablage[-1].num)
 
 
 class Bot(Spieler):
-    def __init__(self, ID, Hand, IsBot):
-        super().__init__(ID, Hand)
+    def __init__(self, ID):
+        super().__init__(ID)
         self.isBot = True
