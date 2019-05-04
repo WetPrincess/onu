@@ -28,6 +28,7 @@ class Spieler:
 
 
 class Bot(Spieler):
-    def __init__(self, ID):
+    def __init__(self, ID,diff):
         super().__init__(ID)
         self.isBot = True
+        self.difficulty = diff

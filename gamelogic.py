@@ -52,7 +52,7 @@ def kannablegen(spieler, id, ablage, deck):
     if isinstance(spieler[id], Bot):
         print(spieler[id].ID, "hat noch ", len(spieler[id].hand), "karten auf der Hand")
         print()
-    time.sleep(1)
+    #time.sleep(1)
     return False
 
 
@@ -109,12 +109,12 @@ def siegbedingung(spieler, id):
     if len(spieler[id].hand) == 0:
         print(spieler[id].ID, "hat gewonnen!")
 
-        quit()
+        return True
     else:
         print("Nächster Zug!")
         print("##############################################################################################")
         print()
-        time.sleep(1)
+        #time.sleep(1)
 
 
 
@@ -147,19 +147,15 @@ def aussetzen(spieler, id):
         id += 1
     else:
         id = 0
-
     print(spieler[id].ID, "muss aussetzen!")
+
     return id
 
 def wechsel(spieler, id):
     print("Die Spielrichtung ändert sich!")
-    print(spieler[0].ID, spieler[1].ID, spieler[2].ID, spieler[3].ID, spieler[4].ID)
-    print(id)
     for i in range(0, len(spieler)):
         spieler.append(spieler.pop((len(spieler)-1)-i))
     id = (len(spieler)-1)-id
-    print(spieler[0].ID, spieler[1].ID, spieler[2].ID, spieler[3].ID, spieler[4].ID)
-    print(id)
     return id
 
 def wuenschen(spieler, id, ablage):
@@ -170,7 +166,7 @@ def wuenschen(spieler, id, ablage):
                 ablage[-1].color = {karte_inp}
                 break
         else:
-            ablage[-1].color = random.choice([{"R"}, {"B"}, {"Y"}, {"G"}])
+            ablage[-1].color = bot_farbprobe(spieler, id)[0][0]
             print(spieler[id].ID, "wünscht sich",ablage[-1].color )
             break
 
@@ -189,13 +185,82 @@ def plus_vier(spieler, id, ablage,  deck):
 
 # Bot
 
-def bot_karteablegen(spieler, ablage, id, deck):
-    for ablegen in range(0, len(spieler[id].hand)):
-        if spieler[id].hand[ablegen].color == ablage[-1].color or spieler[id].hand[ablegen].num == ablage[-1].num\
-                or spieler[id].hand[ablegen].color == {"N"}:
-            print(spieler[id].ID, "hat", len(spieler[id].hand), "Karten auf der Hand")
-            print()
-            id = karteablegen(spieler, id, ablage, deck, int(ablegen))
-            print()
-            time.sleep(1)
-            return id
+def bot_karteablegen(spieler, ablage, id, deck, difficulty):
+    if difficulty:
+        print("True Intelligence coming to destroy your pathetic existance!")
+        print(spieler[id].ID, "hat", len(spieler[id].hand), "Karten auf der Hand")
+        print()
+        id = karteablegen(spieler, id, ablage, deck, int(bot_karte_waehlen(spieler, id, ablage)))
+        print()
+        #time.sleep(1)
+        return id
+    else:
+        print("I'm Dum Bot!")
+        for ablegen in range(0, len(spieler[id].hand)):
+            if spieler[id].hand[ablegen].color == ablage[-1].color or spieler[id].hand[ablegen].num == ablage[-1].num\
+                    or spieler[id].hand[ablegen].color == {"N"}:
+                bot_farbprobe(spieler, id)[0][0]
+                print(spieler[id].ID, "hat", len(spieler[id].hand), "Karten auf der Hand")
+                print()
+                id = karteablegen(spieler, id, ablage, deck, int(ablegen))
+                print()
+                #time.sleep(1)
+                return id
+
+def bot_karte_waehlen(spieler, id, ablage):
+    playable = []
+    for check in range(0, len(spieler[id].hand)):
+        if spieler[id].hand[check].color == ablage[-1].color or spieler[id].hand[check].num == ablage[-1].num \
+                or spieler[id].hand[check].color == {"N"}:
+            playable.append(check)
+    for check in playable:
+        if len(playable) == 1 and spieler[id].hand[check].num == {"+4"}:
+            return check
+        elif (spieler[id].hand[check].color == bot_farbprobe(spieler, id)[0][0]) and bot_farbprobe(spieler,id)[0][1] >= 2 and \
+                len(spieler[vorher_nachher(spieler,id)[0]].hand) > len(spieler[id].hand) and \
+                len(spieler[vorher_nachher(spieler,id)[0]].hand) != 1:
+            return check
+        elif spieler[id].hand[check].num == {"X"} and len(spieler[vorher_nachher(spieler,id)[0]].hand) <= len(spieler[id].hand):
+            return check
+
+        elif spieler[id].hand[check].num == {"+2"} and len(spieler[vorher_nachher(spieler,id)[0]].hand) < len(spieler[id].hand):
+            return check
+
+        elif spieler[id].hand[check].num == {"<"} and len(spieler[vorher_nachher(spieler,id)[0]].hand) \
+                < len(spieler[vorher_nachher(spieler,id)[1]].hand) or len(spieler[vorher_nachher(spieler,id)[0]].hand) < 2\
+                and len(spieler[vorher_nachher(spieler,id)[1]].hand) > len(spieler[vorher_nachher(spieler,id)[0]].hand):
+            return check
+
+        elif spieler[id].hand[check].num == ablage[-1].num and \
+                spieler[id].hand[check].color == bot_farbprobe(spieler,id)[0][0] or \
+                spieler[id].hand[check].color == bot_farbprobe(spieler,id)[1][0] and \
+                bot_farbprobe(spieler,id)[1][1] >= 2:
+            return check
+    return playable[0]
+
+def bot_farbprobe(spieler, id):
+    colors = [[{"R"},0],[{"B"},0],[{"Y"},0],[{"G"},0]]
+    for check in range(0, len(spieler[id].hand)):
+        if spieler[id].hand[check].color == {"R"}:
+            colors[0][1] += 1
+        if spieler[id].hand[check].color == {"B"}:
+            colors[1][1] += 1
+        if spieler[id].hand[check].color == {"Y"}:
+            colors[2][1] += 1
+        if spieler[id].hand[check].color == {"G"}:
+            colors[3][1] += 1
+    colors.sort(key=lambda colors: colors[1],reverse=True)
+    print(colors)
+    return colors
+
+def vorher_nachher(spieler, id1):
+    id2 = id1
+    if id1 < len(spieler)-1:
+        id1 += 1
+    else:
+        id1 = 0
+    if id1 > 0:
+        id2 -= 1
+    else:
+        id2 = -1
+    return (id1,id2)
