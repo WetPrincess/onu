@@ -119,11 +119,12 @@ while True:
         if kannablegen(spieler, id, ablage, deck):
             id = karteablegen(spieler, id, ablage, deck, None)
     else:
-        print("Macht seinen Zug ...")
+        print(spieler[id].ID, "Macht seinen Zug ...")
         if kannablegen(spieler,  id, ablage, deck):
             id = bot_karteablegen(spieler, ablage, id, deck, spieler[id].difficulty)
 
-    siegbedingung(spieler, id)
+    if siegbedingung(spieler, id):
+        quit()
         # wins[spieler[id].ID] += 1
         # break
     deckvoll(deck, ablage)

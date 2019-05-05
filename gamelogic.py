@@ -38,7 +38,7 @@ def kannablegen(spieler, id, ablage, deck):
         spieler[id].sprache(2)
         print(spieler[id].ID, "hat noch ", len(spieler[id].hand), "karten auf der Hand")
         print()
-    #time.sleep(1)
+    time.sleep(1)
     return False
 
 
@@ -81,7 +81,7 @@ def karteablegen(spieler, id, ablage, deck, karte_inp):
         elif spieler[id].hand[karte_inp].color == ablage[-1].color or spieler[id].hand[karte_inp].num == ablage[-1].num:
 
             spieler[id].ablegen_karte(spieler, id, ablage, karte_inp)
-            # time.sleep(1)
+            time.sleep(1)
 
             return id
 
@@ -102,7 +102,7 @@ def siegbedingung(spieler, id):
         print("Nächster Zug!")
         print("##############################################################################################")
         print()
-        #time.sleep(1)
+        time.sleep(1)
 
 
 
@@ -184,7 +184,7 @@ def bot_karteablegen(spieler, ablage, id, deck, difficulty):
         print()
         id = karteablegen(spieler, id, ablage, deck, int(bot_kern(spieler, id, ablage)))
         print()
-        #time.sleep(1)
+        time.sleep(1)
         return id
     else: # Easy Bot, legt erstbeste Karte ab.
         print("I'm too dumb to exist! :(")
@@ -195,7 +195,7 @@ def bot_karteablegen(spieler, ablage, id, deck, difficulty):
                 print()
                 id = karteablegen(spieler, id, ablage, deck, int(ablegen))
                 print()
-                #time.sleep(1)
+                time.sleep(1)
                 return id
 
 
@@ -208,7 +208,7 @@ def bot_kern(spieler, id, ablage):
                 spieler[id].hand[check].num == ablage[-1].num or\
                 spieler[id].hand[check].color == {"N"}:
             playable.append(check)
-    print(playable)
+    # print(playable)
     for check in playable:
         if spieler[id].hand[check].num == {"+4"} and (len(playable) == 1 or random.randint(1,4) == 1):
             best_option.append((check,1))
