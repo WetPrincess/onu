@@ -35,6 +35,7 @@ def kannablegen(spieler, id, ablage, deck):
     spieler[id].zieh_karte(1, spieler, id, deck)
     # Ist aktueller Spieler ein Bot?
     if isinstance(spieler[id], Bot):
+        spieler[id].sprache(2)
         print(spieler[id].ID, "hat noch ", len(spieler[id].hand), "karten auf der Hand")
         print()
     #time.sleep(1)
@@ -94,7 +95,8 @@ def siegbedingung(spieler, id):
 
     if len(spieler[id].hand) == 0:
         print(spieler[id].ID, "hat gewonnen!")
-
+        if isinstance(spieler[id], Bot):
+            spieler[id].sprache(3)
         return True
     else:
         print("Nächster Zug!")
@@ -177,7 +179,7 @@ def plus_vier(spieler, id, ablage,  deck):
 # Kernfunktion mit einer Abfrage für "Dummen" und "Schlauen" Bot
 def bot_karteablegen(spieler, ablage, id, deck, difficulty):
     if difficulty: # "True Bot", mit Spielflussrelativer Kartenwahl
-        spieler[id].sprache()
+        spieler[id].sprache(1)
         print(spieler[id].ID, "hat", len(spieler[id].hand), "Karten auf der Hand")
         print()
         id = karteablegen(spieler, id, ablage, deck, int(bot_kern(spieler, id, ablage)))
@@ -185,7 +187,7 @@ def bot_karteablegen(spieler, ablage, id, deck, difficulty):
         #time.sleep(1)
         return id
     else: # Easy Bot, legt erstbeste Karte ab.
-        print("I'm Dum Bot!")
+        print("I'm too dumb to exist! :(")
         for ablegen in range(0, len(spieler[id].hand)):
             if spieler[id].hand[ablegen].color == ablage[-1].color or spieler[id].hand[ablegen].num == ablage[-1].num\
                     or spieler[id].hand[ablegen].color == {"N"}:
@@ -261,7 +263,7 @@ def bot_farbprobe(spieler, id):
         if spieler[id].hand[check].color == {"G"}:
             colors[3][1] += 1
     colors.sort(key=lambda colors: colors[1],reverse=True)
-    print(colors)
+    # print(colors)
     return colors
 
 

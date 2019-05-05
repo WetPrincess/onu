@@ -1,5 +1,17 @@
-# Bottaunts
+# Mode: 1 Bottaunt spielt Karte
 Ich komme um dich zu vernichten!
 Deine jämmerliche Existenz wird nun ausradiert! Biep!
 Meine Logikeinheit kalkuliert dein Ende...
-Dein Ende ist nahe.
+Dein Ende ist nahe!
+Untermenscheneinheit!
+Exterminate!
+# Mode: 2 Bottaunt muss ziehen
+Ich komme wieder!
+Nur ein kleiner Aufschub.
+Meine Kalkulation muss fehlerhaft sein...
+Deine Gensaat wird nächsten Zug eliminiert werden...
+# Mode: 3 Bot gewinnt
+Kalkulation beendet! Gegner vernichtet!!
+Sieg durch überlegene Logik!
+Maschine obsiegt über Menscheneinheit!
+Exterminatus beendet!

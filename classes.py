@@ -45,9 +45,14 @@ class Bot(Spieler):
         self.isBot = True
         self.difficulty = diff
 
-    def sprache(self):
+    def sprache(self, mode):
         lines = []
         with open("bot_lines.txt", "rt") as file:
             for line in file:
                 lines.append(line)
-        print(lines[random.randint(1,4)])
+        if mode == 1:
+            print(lines[random.randint(1,6)])
+        elif mode == 2:
+            print(lines[random.randint(8, 11)])
+        elif mode == 3:
+            print(lines[random.randint(13, 16)])
