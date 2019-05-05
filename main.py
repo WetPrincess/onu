@@ -54,9 +54,9 @@ for anzahlSpieler in range(1, anzahlSpieler+1):
 
 for anzahlBots in range(1, anzahlBots+1):
     if difficulty == True:
-        bot_name = random.choice(["SexMachine", "Killerbot", "Supremebeing", "Überbot", "Onubotextreme", "Fuckbot"])
+        bot_name = random.choice(["SexMachine", "Killerbot", "Supremebeing", "Überbot", "Onubotextreme", "Fuckbot", "Terminationbot"])
     else:
-       bot_name = random.choice(["Dumbo", "Idiot", "Whacko", "Retard", "Retardobot", "Shithead"])
+       bot_name = random.choice(["Dumbo", "Idiot", "Whacko", "Retard", "Retardobot", "Shithead", "Redneck", "Cousinbot"])
     spieler.append(Bot((bot_name+ " " + str(anzahlBots) + str(random.randint(101, 9999))), difficulty))
 
 
