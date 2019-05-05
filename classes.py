@@ -26,9 +26,23 @@ class Spieler:
         print (spieler[id].ID, "spielt:")
         print(ablage[-1].color, ablage[-1].num)
 
+# Zeigt aktuellen Spieler, Hand und Ablage
+    def handzeigen(self, spieler, id, ablage):
+        print(spieler[id].ID, "ist dran!")
+        print()
+        for karte in range(0, len(spieler[id].hand)):
+            print(karte + 1, spieler[id].hand[karte].color, spieler[id].hand[karte].num)
+
+        print()
+        print("oberste karte auf dem ablagestapel: ")
+        print(ablage[-1].color, ablage[-1].num)
+        print()
 
 class Bot(Spieler):
     def __init__(self, ID,diff):
         super().__init__(ID)
         self.isBot = True
         self.difficulty = diff
+
+    def sprache(self):
+        pass

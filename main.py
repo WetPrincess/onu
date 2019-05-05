@@ -4,7 +4,7 @@ import random
 # Spieler und Bots Erstellung
 # anzahlSpieler = int(input("Wie viele Spieler?"))
 # anzahlBots = int(input("Wie viele Bots?"))
-wins = {'True Bot 1':0, 'Dum Bot 1':0}
+wins = {'Dumbo 1':0, 'True Bot 1':0}
 
 while True:
     anzahlSpieler = 0
@@ -14,12 +14,12 @@ while True:
 
 
     for anzahlSpieler in range(1, anzahlSpieler+1):
-        spieler.append(Spieler({str(input("Spieler " + str(anzahlSpieler) + " wie heißt du? "))}))
+        spieler.append(Spieler(str(input("Spieler " + str(anzahlSpieler) + " wie heißt du? "))))
 
     for anzahlBots in range(1, anzahlBots+1):
-        spieler.append(Bot(("True Bot " + str(anzahlBots)),True))
-    # Dum Bot added for testing
-    spieler.append(Bot(("Dum Bot " + str(anzahlBots)), False))
+        spieler.append(Bot(("Dumbo " + str(anzahlBots)), False))
+
+    spieler.append(Bot(("True Bot " + str(anzahlBots)), True))
 
     # Deckcreation und Shuffle
     deck = []
@@ -53,7 +53,7 @@ while True:
     random.shuffle(deck)
 
     # Spieler bekommen karten
-    for ID in range(0, 2): # anzahlSpieler + anzahlBots):
+    for ID in range(0, anzahlSpieler + anzahlBots + 1):
         spieler[id].zieh_karte(5, spieler, ID, deck)
 
     ablage.extend(deck[0:1])
@@ -72,9 +72,8 @@ while True:
         wuenschen(spieler, id, ablage)
 
     while True:
-
         if not isinstance(spieler[id], Bot):
-            handzeigen(spieler, id, ablage)
+            spieler[id].handzeigen(spieler, id, ablage)
             if kannablegen(spieler, id, ablage, deck):
                 id = karteablegen(spieler, id, ablage, deck, None)
         else:
@@ -83,11 +82,14 @@ while True:
                 id = bot_karteablegen(spieler, ablage, id, deck, spieler[id].difficulty)
 
         if siegbedingung(spieler, id):
-            break
             wins[spieler[id].ID] += 1
+            break
         deckvoll(deck, ablage)
         id = am_zug(spieler, id)
+        print(deck)
+        print(ablage)
 
-    if wins["True Bot 1"] == 1:
+    if wins[spieler[id].ID] == 100000:
         print(wins)
+
         break
