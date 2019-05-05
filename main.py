@@ -7,8 +7,8 @@ import random
 wins = {'Dumbo 1':0, 'True Bot 1':0}
 
 while True:
-    anzahlSpieler = 0
-    anzahlBots = 1
+    anzahlSpieler = 1
+    anzahlBots = 0
     spieler = []
     id = 0
 
@@ -89,7 +89,7 @@ while True:
         print(deck)
         print(ablage)
 
-    if wins[spieler[id].ID] == 100000:
-        print(wins)
-
-        break
+    # if wins[spieler[id].ID] == 100000:
+    #     print(wins)
+    #
+    #     break

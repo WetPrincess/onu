@@ -1,3 +1,4 @@
+import random
 # Unsere Klassen werden hier deklariert
 
 
@@ -45,4 +46,8 @@ class Bot(Spieler):
         self.difficulty = diff
 
     def sprache(self):
-        pass
+        lines = []
+        with open("bot_lines.txt", "rt") as file:
+            for line in file:
+                lines.append(line)
+        print(lines[random.randint(1,4)])

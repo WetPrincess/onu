@@ -177,7 +177,7 @@ def plus_vier(spieler, id, ablage,  deck):
 # Kernfunktion mit einer Abfrage für "Dummen" und "Schlauen" Bot
 def bot_karteablegen(spieler, ablage, id, deck, difficulty):
     if difficulty: # "True Bot", mit Spielflussrelativer Kartenwahl
-        print("True Intelligence coming to destroy your pathetic existance!")
+        spieler[id].sprache()
         print(spieler[id].ID, "hat", len(spieler[id].hand), "Karten auf der Hand")
         print()
         id = karteablegen(spieler, id, ablage, deck, int(bot_kern(spieler, id, ablage)))
